@@ -1,4 +1,6 @@
-# Daughters of Aether – Project Overview & Setup Guide
+<img src="cover.png"/>
+
+## Daughters of Aether – Project Overview & Setup Guide
 
 Daughters of Aether is a real-time Web3 PvP arena game built on Solana, featuring:
 - 3D character selection and battles
