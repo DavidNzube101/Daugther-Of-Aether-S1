@@ -1,131 +1,122 @@
-<img src="cover.png"/>
+# Daughters of Aether – Advanced Local Setup Manual
 
-## Daughters of Aether – Project Overview & Setup Guide
-
-Daughters of Aether is a real-time Web3 PvP arena game built on **Gorbagana testnet**, featuring:
-- 3D character selection and battles
-- On-chain staking and rewards on Gorbagana testnet
-- Real-time matchmaking and multiplayer combat
-- A modern, animated UI with wallet integration
-
-## Play the Game
-
-Try the live game here: [https://daughter-of-aether.vercel.app/](https://daughter-of-aether.vercel.app/)
-
-**🎮 Gorbagana Testnet Version**: Connect your wallet to Gorbagana testnet to play with GOR tokens!
-
-**✅ Compatible Wallets**: Backpack and Phantom work seamlessly. Solflare has known compatibility issues.
+Welcome to the **Daughters of Aether** advanced setup guide! This manual is for developers and power users who want full control over every aspect of the game—customizing, running, and hacking on the frontend, backend, and smart contract components.
 
 ---
 
-## Project Structure
+## Project Overview
 
-This project is split into three main repositories:
+Daughters of Aether is a real-time Web3 PvP arena game built on the **Gorbagana testnet**. It features:
+- 3D character selection and battles
+- On-chain staking and rewards
+- Real-time matchmaking and multiplayer combat
+- Modern, animated UI with wallet integration
 
-- **Frontend UI:** [github.com/DavidNzube101/DOA-](https://github.com/DavidNzube101/DOA-)
+This guide will help you set up and customize every part of the project locally.
+
+---
+
+## Repository Structure
+
+The project is split into three main repositories:
+
+- **Frontend UI:**
   - Nuxt 3 + Vue 3 + Three.js game client
   - Wallet connection, 3D arena, matchmaking, and battle UI
-  - **See the README in this repo for detailed setup and environment variable instructions.**
+  - [Frontend GitHub Repo](https://github.com/DavidNzube101/DOA-)
 
-- **Backend Server:** [github.com/DavidNzube101/DOA-server-](https://github.com/DavidNzube101/DOA-server-)
+- **Backend Server:**
   - Node.js + Socket.IO matchmaking and battle state server
   - Handles contract calls, player state, and auto-resolution
-  - **See the README in this repo for deployment, environment, and security notes.**
+  - [Backend GitHub Repo](https://github.com/DavidNzube101/DOA-server-)
 
-- **Gorbagana Smart Contract:** [github.com/DavidNzube101/DOA-Contract](https://github.com/DavidNzube101/DOA-Contract)
-  - Anchor-based Gorbagana program for battles, staking, and resolution
-  - **Deployed on Gorbagana testnet** - see the README for build, deploy, and customization instructions.
-
----
-
-## Game Overview
-
-- **Connect your Gorbagana wallet** (Backpack or Phantom recommended, configured for Gorbagana testnet)
-- **Select a character** and stake GOR tokens to enter the arena
-- **Matchmaking** pairs you with another player in real time
-- **Battle in a 3D arena** with health, mana, and special moves
-- **Winner takes all**: the total stake pool is awarded to the victor
-- **All results are settled on Gorbagana testnet** for transparency and fairness
+- **Gorbagana Smart Contract:**
+  - Anchor-based Solana program for battles, staking, and resolution
+  - [Contract GitHub Repo](https://github.com/DavidNzube101/DOA-Contract)
 
 ---
 
-## Gorbagana Testnet Setup
+## Advanced Local Setup
 
-### Smart Contract Details
-- **Program ID**: `GAB3CVmCbarpepefKNFEGEUGw6RzcMx9LSGER2Hg3FU2`
-- **Explorer**: [https://explorer.gorbagana.wtf/address/GAB3CVmCbarpepefKNFEGEUGw6RzcMx9LSGER2Hg3FU2](https://explorer.gorbagana.wtf/address/GAB3CVmCbarpepefKNFEGEUGw6RzcMx9LSGER2Hg3FU2)
+### 1. Clone Each Repository
 
-### Getting GOR Testnet Tokens
-1. Visit [faucet.gorbagana.wtf](https://faucet.gorbagana.wtf) to get GOR tokens
-2. Configure your wallet to connect to Gorbagana testnet
-3. Ensure you have enough GOR for staking and transaction fees
+Clone the three main repositories to your local machine:
 
-### Wallet Compatibility
-- ✅ **Backpack**: Fully compatible
-- ✅ **Phantom**: Fully compatible  
-- ❌ **Solflare**: Known compatibility issues
+```bash
+git clone https://github.com/DavidNzube101/DOA-.git        # Frontend
+cd DOA-
+git clone https://github.com/DavidNzube101/DOA-server-.git # Backend
+cd ..
+git clone https://github.com/DavidNzube101/DOA-Contract.git # Smart Contract
+```
 
-### Contract Deployment
-The smart contract is deployed on Gorbagana testnet. See the contract repository for:
-- Build and deployment instructions
-- Transaction examples on Gorbagana explorer
-- Integration guides for developers
+### 2. Install Dependencies
+
+For each repo, install dependencies using [pnpm](https://pnpm.io/):
+
+```bash
+cd DOA-         # or DOA-server-, or DOA-Contract
+yarn install    # or pnpm install
+```
+
+### 3. Configure Environment Variables
+
+Each repository requires its own `.env` file. Refer to the README in each repo for the required variables and example files. Common variables include:
+- Solana network and program IDs
+- Backend server URLs and ports
+- CORS origins
+- Wallet and contract configuration
+
+### 4. Fund Your Wallet
+
+- Use [faucet.gorbagana.wtf](https://faucet.gorbagana.wtf) to get GOR testnet tokens.
+- Configure your wallet (Backpack or Phantom recommended) for Gorbagana testnet.
+
+### 5. Build and Run Each Component
+
+**Backend Server:**
+```bash
+cd DOA-server-
+pnpm install
+pnpm start   # or: node matchmaking.cjs
+```
+
+**Frontend UI:**
+```bash
+cd DOA-
+pnpm install
+pnpm dev     # for development mode
+# or
+pnpm build && pnpm preview   # for production mode
+```
+
+**Smart Contract:**
+- See the [DOA-Contract README](https://github.com/DavidNzube101/DOA-Contract) for build, deploy, and customization instructions.
+
+### 6. Connect and Play
+
+- Start the backend server first, then the frontend UI.
+- Open your browser to the frontend's local address (usually [http://localhost:3000](http://localhost:3000)).
+- Connect your wallet, stake, and play!
 
 ---
 
-## Local Setup
+## Customization & Development
 
-You have two ways to run Daughters of Aether locally:
+- **Frontend:** Modify UI, 3D assets, wallet logic, and game flow in the Nuxt/Vue project.
+- **Backend:** Tweak matchmaking, battle logic, and contract calls in the Node.js server.
+- **Contract:** Extend or change on-chain logic in the Anchor program (Rust).
 
-### **Option 1: One-Click Local Setup (Recommended)**
-
-If you want everything to work out of the box, with no manual configuration, use this method!
-
-1. **Clone the all-in-one local repo:**
-   ```bash
-   git clone https://github.com/DavidNzube101/DOA-Local.git
-   cd DOA-Local
-   ```
-2. **Install dependencies and build:**
-   ```bash
-   pnpm install
-   pnpm build
-   pnpm preview
-   ```
-3. **Open your browser and visit:**
-   [http://localhost:3000](http://localhost:3000)
-
-That's it! The game (frontend + backend) will be running locally, fully configured.
-
----
-
-### **Option 2: Advanced/Manual Setup (Full Control)**
-
-If you want to customize everything, run your own backend authority, or hack on individual components, use this approach:
-
-1. **Clone each repository:**
-   - [Frontend UI](https://github.com/DavidNzube101/DOA-)
-   - [Backend Server](https://github.com/DavidNzube101/DOA-server-)
-   - [Gorbagana Contract](https://github.com/DavidNzube101/DOA-Contract)
-
-2. **Follow the setup guides in each repo:**
-   - Each repository contains a detailed README with environment variables, build steps, and troubleshooting.
-   - The UI and server can be run locally with Node.js and pnpm.
-   - The contract can be deployed to Gorbagana testnet (see contract README for deployment).
-
-3. **Configure your environment:**
-   - Set up `.env` files as described in each repo.
-   - Fund your wallets with GOR testnet tokens from [faucet.gorbagana.wtf](https://faucet.gorbagana.wtf).
-
-4. **Start the backend, then the frontend, and play!**
+Refer to each repo's README for advanced configuration, environment variables, and troubleshooting.
 
 ---
 
 ## Need Help?
-- Each repo README covers common issues and troubleshooting.
-- For advanced contract deployment or customization, see the contract repo.
-- For live support, open an issue in the relevant repository.
+- Each repository contains a README with detailed setup, environment, and troubleshooting info.
+- For issues or questions, open an issue in the relevant GitHub repository.
 
 ---
 
-Enjoy battling in Daughters of Aether on Gorbagana testnet!
+**Project Home:** [https://github.com/DavidNzube101/DOA-](https://github.com/DavidNzube101/DOA-)
+
+Enjoy building and customizing your own Daughters of Aether experience!
