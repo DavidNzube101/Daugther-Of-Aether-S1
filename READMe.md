@@ -75,7 +75,33 @@ The smart contract is deployed on Gorbagana testnet. See the contract repository
 
 ## Local Setup
 
-If you want to run Daughters of Aether locally (for development, testing, or hacking):
+You have two ways to run Daughters of Aether locally:
+
+### **Option 1: One-Click Local Setup (Recommended)**
+
+If you want everything to work out of the box, with no manual configuration, use this method!
+
+1. **Clone the all-in-one local repo:**
+   ```bash
+   git clone https://github.com/DavidNzube101/DOA-Local.git
+   cd DOA-Local
+   ```
+2. **Install dependencies and build:**
+   ```bash
+   pnpm install
+   pnpm build
+   pnpm preview
+   ```
+3. **Open your browser and visit:**
+   [http://localhost:3000](http://localhost:3000)
+
+That's it! The game (frontend + backend) will be running locally, fully configured.
+
+---
+
+### **Option 2: Advanced/Manual Setup (Full Control)**
+
+If you want to customize everything, run your own backend authority, or hack on individual components, use this approach:
 
 1. **Clone each repository:**
    - [Frontend UI](https://github.com/DavidNzube101/DOA-)
