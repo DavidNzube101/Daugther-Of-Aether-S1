@@ -1,113 +1,74 @@
-# Daughters of Aether – Local Multiplayer Setup Guide
+# Daughters of Aether – Project Overview & Setup Guide
 
-This guide will help you and a friend set up and play Daughters of Aether locally, using the official UI and server repositories.
+Daughters of Aether is a real-time Web3 PvP arena game built on Solana, featuring:
+- 3D character selection and battles
+- On-chain staking and rewards
+- Real-time matchmaking and multiplayer combat
+- A modern, animated UI with wallet integration
 
----
+## Play the Game
 
-## Prerequisites
-- Node.js (v18+ recommended)
-- pnpm (or npm/yarn)
-- Git
-
----
-
-## 1. Clone the Repositories
-
-### Game UI (Frontend)
-```
-git clone https://github.com/DavidNzube101/DOA-.git doa-ui
-```
-
-### Server (Backend)
-```
-git clone https://github.com/DavidNzube101/DOA-server-.git doa-server
-```
+Try the live game here: [https://daughter-of-aether.vercel.app/](https://daughter-of-aether.vercel.app/)
 
 ---
 
-## 2. Install Dependencies
+## Project Structure
 
-### In the UI folder:
-```
-cd doa-ui
-pnpm install
-```
+This project is split into three main repositories:
 
-### In the server folder:
-```
-cd ../doa-server
-pnpm install
-```
+- **Frontend UI:** [github.com/DavidNzube101/DOA-](https://github.com/DavidNzube101/DOA-)
+  - Nuxt 3 + Vue 3 + Three.js game client
+  - Wallet connection, 3D arena, matchmaking, and battle UI
+  - **See the README in this repo for detailed setup and environment variable instructions.**
 
----
+- **Backend Server:** [github.com/DavidNzube101/DOA-server-](https://github.com/DavidNzube101/DOA-server-)
+  - Node.js + Socket.IO matchmaking and battle state server
+  - Handles contract calls, player state, and auto-resolution
+  - **See the README in this repo for deployment, environment, and security notes.**
 
-## 3. Configure Environment Variables
-
-### UI (`doa-ui/.env.local`):
-```
-# Solana devnet RPC
-SOLANA_DEVNET_RPC_URL=https://api.devnet.solana.com
-GORBAGANA_DEVNET_RPC_URL=https://rpc.gorbagana.wtf
-# Program ID (devnet)
-DEVELOPMENT_PROGRAM_ID=5RV8MAYjHoSb16VkqjqN5KGX139MULDR6GHuYhxettKT
-PRODUCTION_PROGRAM_ID=GAB3CVmCbarpepefKNFEGEUGw6RzcMx9LSGER2Hg3FU2
-# Matchmaking server URL
-MATCHMAKING_SERVER_URL=http://localhost:4000
-```
-
-### Server (`doa-server/.env.local`):
-```
-# Solana devnet RPC
-SOLANA_DEVNET_RPC_URL=https://api.devnet.solana.com
-GORBAGANA_DEVNET_RPC_URL=https://rpc.gorbagana.wtf
-# Program ID (devnet)
-DEVELOPMENT_PROGRAM_ID=5RV8MAYjHoSb16VkqjqN5KGX139MULDR6GHuYhxettKT
-PRODUCTION_PROGRAM_ID=GAB3CVmCbarpepefKNFEGEUGw6RzcMx9LSGER2Hg3FU2
-# Server authority keypair (keep this secret!)
-SERVER_AUTH_KEYPAIR=[]
-```
+- **Solana Smart Contract:** [github.com/DavidNzube101/DOA-Contract](https://github.com/DavidNzube101/DOA-Contract)
+  - Anchor-based Solana program for battles, staking, and resolution
+  - **See the README in this repo for build, deploy, and customization instructions.**
 
 ---
 
-## 4. Start the Server
+## Game Overview
 
-In the `doa-server` directory:
-```
-node matchmaking.cjs
-```
-
-The server will listen on port 4000 by default.
-
----
-
-## 5. Start the Game UI
-
-In a new terminal, in the `doa-ui` directory:
-```
-pnpm dev
-```
-
-The UI will be available at [http://localhost:3000](http://localhost:3000)
+- **Connect your Solana wallet** (Phantom, Solflare, Backpack, etc.)
+- **Select a character** and stake tokens to enter the arena
+- **Matchmaking** pairs you with another player in real time
+- **Battle in a 3D arena** with health, mana, and special moves
+- **Winner takes all**: the total stake pool is awarded to the victor
+- **All results are settled on-chain** for transparency and fairness
 
 ---
 
-## 6. Play with a Friend
-- Both players should open [http://localhost:3000](http://localhost:3000) in their browsers (can be on the same machine or LAN).
-- Each player connects their Solana wallet (Phantom, Solflare, etc.) on devnet.
-- Select a character, stake, and enter the battle!
+## Local Setup
+
+If you want to run Daughters of Aether locally (for development, testing, or hacking):
+
+1. **Clone each repository:**
+   - [Frontend UI](https://github.com/DavidNzube101/DOA-)
+   - [Backend Server](https://github.com/DavidNzube101/DOA-server-)
+   - [Solana Contract](https://github.com/DavidNzube101/DOA-Contract)
+
+2. **Follow the setup guides in each repo:**
+   - Each repository contains a detailed README with environment variables, build steps, and troubleshooting.
+   - The UI and server can be run locally with Node.js and pnpm.
+   - The contract can be deployed to Solana devnet or Gorbagana testnet (see contract README for advanced deployment).
+
+3. **Configure your environment:**
+   - Set up `.env` files as described in each repo.
+   - Fund your wallets with devnet SOL or GOR as needed.
+
+4. **Start the backend, then the frontend, and play!**
 
 ---
 
-## 7. (Optional) Use Fly.io or Railway for Remote Server
-- Deploy the server to [Fly.io](https://fly.io) or [Railway](https://railway.app) for remote play.
-- Update `MATCHMAKING_SERVER_URL` in `.env.local` in the UI to point to your deployed server URL.
-
----
-
-## Troubleshooting
-- Make sure both UI and server are running and accessible.
-- Ensure wallets are funded with devnet SOL (use a faucet if needed).
-- Check environment variables for typos.
+## Need Help?
+- Each repo README covers common issues and troubleshooting.
+- For advanced contract deployment or customization, see the contract repo.
+- For live support, open an issue in the relevant repository.
 
 ---
 
